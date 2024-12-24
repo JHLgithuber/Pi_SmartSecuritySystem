@@ -1,4 +1,5 @@
-from flask import Flask
+#webServer.py
+from flask import Flask, render_template
 import multiprocessing
 import time
 
@@ -7,13 +8,14 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello, Flask is running in a process!"
+    return render_template("SmartSecuritySystemView.html")
 
-def run_flask():
+def run_flask(shared_dict,event_queue, gpio_queue):
+    print("web server process start")
     """
     Flask 애플리케이션을 실행하는 함수.
     """
-    app.run(host="127.0.0.1", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=True)
 
 def worker_task(process_id):
     """
@@ -23,19 +25,6 @@ def worker_task(process_id):
     time.sleep(2)
     print(f"프로세스 {process_id} 작업 완료")
 
+
 if __name__ == "__main__":
-    # Flask를 실행하는 프로세스
-    flask_process = multiprocessing.Process(target=run_flask)
-
-    # 기타 작업을 처리하는 워커 프로세스
-    worker_process = multiprocessing.Process(target=worker_task, args=(1,))
-
-    # 프로세스 시작
-    flask_process.start()
-    worker_process.start()
-
-    # 모든 프로세스가 종료될 때까지 대기
-    worker_process.join()
-    flask_process.terminate()  # Flask 프로세스 종료
-
-    print("모든 작업 완료!")
+    run_flask(None, None)

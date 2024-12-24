@@ -15,22 +15,17 @@ shared_dict = {"motor_speed":0, "led_status":"normal"}
 
 
 def init_processes():
-    #processes.append({"name": "FlaskServer", "target": run_flask, "process": Process(target=run_flask, args=(shared_dict,event_queue, gpio_queue))})
-    processes.append(
-        {"name": "GPIO", "target": run_GPIO, "process": Process(target=run_GPIO, args=(shared_dict,event_queue, gpio_queue))})
-    processes.append(
-        {"name": "VideoProcessing", "target": run_video_processing, "process": Process(target=run_video_processing, args=(shared_dict,event_queue, gpio_queue))})
-    processes.append(
-        {"name": "MotorManager", "target": wait_run_motor, "process": Process(target=wait_run_motor, args=(shared_dict,event_queue, gpio_queue))})
-    processes.append(
-        {"name": "LedManager", "target": wait_run_led, "process": Process(target=wait_run_led, args=(shared_dict, event_queue, gpio_queue))})
+    processes.append({"name": "FlaskServer", "target": run_flask, "process": Process(target=run_flask, args=(shared_dict,event_queue, gpio_queue, live_stream_queue))})
+    processes.append({"name": "GPIO", "target": run_GPIO, "process": Process(target=run_GPIO, args=(shared_dict,event_queue, gpio_queue))})
+    processes.append({"name": "VideoProcessing", "target": run_video_processing, "process": Process(target=run_video_processing, args=(shared_dict,event_queue, gpio_queue, live_stream_queue))})
+    processes.append({"name": "MotorManager", "target": wait_run_motor, "process": Process(target=wait_run_motor, args=(shared_dict,event_queue, gpio_queue))})
+    processes.append({"name": "LedManager", "target": wait_run_led, "process": Process(target=wait_run_led, args=(shared_dict, event_queue, gpio_queue))})
 
     for proc_info in processes:
-        proc_info["process"].daemon = True
         proc_info["process"].start()
         print(f"[INFO] Started {proc_info['name']} with PID {proc_info['process'].pid}")
 
-
+"""
 def check_and_restart_process():
     while True:
         sleep(1)
@@ -39,10 +34,10 @@ def check_and_restart_process():
             if not process.is_alive():  # 프로세스 종료 확인
                 print(f"[WARNING] {proc_info['name']} (PID: {process.pid}) has stopped. Restarting...")
                 new_process = Process(target=proc_info["target"], args=(shared_dict,event_queue, gpio_queue))  # 새로운 프로세스 생성
-                new_process.daemon = True
                 proc_info["process"] = new_process
                 new_process.start()
                 print(f"[INFO] Restarted {proc_info['name']} with PID {new_process.pid}")
+"""
 
 def terminate_gpio_processes():
     try:
@@ -70,10 +65,12 @@ if __name__ == '__main__':
     shared_dict = manager.dict()  # Manager를 사용하여 공유 딕셔너리 생성
     event_queue = manager.Queue()
     gpio_queue = manager.Queue()
+    live_stream_queue = manager.Queue()
     init_processes()
     try:
-        check_and_restart_process()
-        pass
+        while True:
+            pass
+        #check_and_restart_process()
     except KeyboardInterrupt:
         print("[INFO] Stopping all processes...")
         for proc_info in processes:

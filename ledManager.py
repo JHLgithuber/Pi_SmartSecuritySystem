@@ -33,18 +33,7 @@ def wait_run_led(shared_dict, event_queue, gpio_queue_arg):
 
     print("LED process start")
     while True:
-        set_color(1,0,0)
+        set_color(0.5,0.5,0.5)
         sleep(5)
         round_color()
         print("LED process run")
-
-
-
-
-if __name__ == "__main__":
-    try:
-        wait_run_led(None, None)
-
-    except KeyboardInterrupt:
-        print("LED 프로그램 종료")
-        set_color(0,0,0)

@@ -82,12 +82,3 @@ def wait_run_motor(shared_dict,event_queue,gpio_queue_input):
     while True:
         motor_test()
         print("motor process run")
-
-
-if __name__ == "__main__":
-    try:
-        while True:
-            motor_test()
-    except KeyboardInterrupt:
-        print("프로그램 종료")
-        set_step([0,0,0,0])  # 모든 핀 OFF

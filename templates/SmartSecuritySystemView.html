@@ -55,13 +55,17 @@
     </div>
 
     <script>
+        // 현재 페이지의 URL에서 호스트와 포트를 가져옵니다.
+        const currentHost = `${window.location.hostname}:${window.location.port}`;
+        const streamUrl = `http://${currentHost}/stream`; // Flask 스트림 URL
+        const serverUrl = `http://${currentHost}`; // Socket.IO 서버 URL
+
         // 영상 스트리밍 설정
         const videoElement = document.getElementById('videoStream');
-        const streamUrl = "http://your-stream-url/stream"; // 스트리밍 URL
         videoElement.src = streamUrl;
 
         // Socket.IO 알림 설정
-        const socket = io("http://your-server-url"); // 서버 URL
+        const socket = io(serverUrl); // 현재 서버 주소로 연결
         const notificationsContainer = document.getElementById('notifications');
 
         socket.on("connect", () => {
@@ -80,5 +84,6 @@
             console.log("Socket.IO 연결 끊김");
         });
     </script>
+
 </body>
 </html>

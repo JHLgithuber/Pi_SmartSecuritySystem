@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <targets>
+      <target name="rpi5@192.168.0.93:22" type="ssh/sftp" uuid="209b106f-6b57-4984-a1ba-07dcf9307175">
+        <config>
+          <option name="projectRootOnTarget" value="/home/rpi5/Pi_SmartSecuritySystem" />
+          <option name="serverName" value="rpi5@192.168.0.93:22 password" />
+        </config>
+      </target>
+    </targets>
+  </component>
+</project>

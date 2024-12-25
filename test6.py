@@ -22,7 +22,7 @@ class MotorController(threading.Thread):
         self.current_step = 0
         self.direction = 0
         self.stop_event = threading.Event()
-        self.step_delay = 0.01
+        self.step_delay = 0.003
 
     def run(self):
         while not self.stop_event.is_set():
@@ -30,7 +30,7 @@ class MotorController(threading.Thread):
                 self.set_motor_step([0, 0, 0, 0])
                 time.sleep(0.01)
             else:
-                steps = 1
+                steps = 4
                 for _ in range(steps):
                     if self.direction == 1:
                         self.current_step = (self.current_step + 1) % len(self.step_sequence)
@@ -85,7 +85,7 @@ class CameraManager:
 
         self.latest_frame = None
         self.running = True
-        self.frame_rate = 30
+        self.frame_rate = 5
         self.prev_time = time.time()
 
         # 모터 핀 & 스텝 시퀀스 설정
@@ -120,7 +120,7 @@ class CameraManager:
 
         # 사운드 관련 초기화
         pygame.mixer.init()
-        self.sound_file = "/home/rpi5/teamproject/alert.mp3"  # 경로를 적절히 수정하세요
+        self.sound_file = "/path/to/your/sound.mp3"  # 경로를 적절히 수정하세요
         self.is_playing_sound = False
 
     def set_led_color(self, r, g, b):

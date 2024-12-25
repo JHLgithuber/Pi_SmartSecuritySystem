@@ -108,7 +108,7 @@ def send_event():
     while True:
 
         sleep(1)
-        emit_message("시발")
+        emit_message("heartbeat")
         camera_manager.get_event_message()
         if event_message != camera_manager.get_event_message():
             print("event_message: "+event_message)

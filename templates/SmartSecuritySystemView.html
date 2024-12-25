@@ -43,28 +43,46 @@
             border: 1px solid #4caf50;
             border-radius: 5px;
         }
+        /* (변경) 이미지 태그 스타일을 추가할 수도 있습니다. */
+        .video-container img {
+            width: 100%;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
     <h1>스마트 보안 체계</h1>
+
+    <!-- (변경) 기존 <video> 태그로 streamUrl을 사용하던 부분 주석 처리 -->
+    <!--
     <div class="stream-container">
         <video id="videoStream" autoplay controls></video>
     </div>
+    -->
+
+    <!-- (변경) Flask에서 제공하는 /video_feed 라우트로부터 이미지 스트리밍 받는 영역 -->
+    <div class="video-container" style="margin-top: 20px; width: 80%; max-width: 800px;">
+        <img src="{{ url_for('video_feed') }}" alt="Video Stream" />
+    </div>
+
     <div class="notifications" id="notifications">
         <h3>실시간 알림</h3>
     </div>
 
     <script>
+        // (변경) socket.io 연결 부분은 그대로 사용하되, videoElement 관련 부분 삭제 또는 주석 처리
         // 현재 페이지의 URL에서 호스트와 포트를 가져옵니다.
         const currentHost = `${window.location.hostname}:${window.location.port}`;
-        const streamUrl = `http://${currentHost}/stream`; // Flask 스트림 URL
-        const serverUrl = `http://${currentHost}`; // Socket.IO 서버 URL
 
-        // 영상 스트리밍 설정
+        // (변경) 더 이상 <video> 요소를 통해 streamUrl을 설정하지 않으므로 아래 부분은 주석 처리
+        /*
+        const streamUrl = `http://${currentHost}/stream`; // Flask 스트림 URL
         const videoElement = document.getElementById('videoStream');
         videoElement.src = streamUrl;
+        */
 
-        // Socket.IO 알림 설정
+        const serverUrl = `http://${currentHost}`; // Socket.IO 서버 URL
         const socket = io(serverUrl); // 현재 서버 주소로 연결
         const notificationsContainer = document.getElementById('notifications');
 
@@ -84,6 +102,5 @@
             console.log("Socket.IO 연결 끊김");
         });
     </script>
-
 </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask-SocketIO Example</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Flask-SocketIO 예제</h1>
+    <div id="messages">
+        <p>수신된 메시지가 여기에 표시됩니다.</p>
+    </div>
+    <script>
+        const socket = io();
+
+        // 서버로부터 메시지를 받을 때
+        socket.on('server_message', (data) => {
+            const messagesDiv = document.getElementById('messages');
+            const message = document.createElement('p');
+            message.textContent = data.data;
+            messagesDiv.appendChild(message);
+        });
+
+        console.log("Socket.IO 클라이언트 연결됨.");
+    </script>
+</body>
+</html>

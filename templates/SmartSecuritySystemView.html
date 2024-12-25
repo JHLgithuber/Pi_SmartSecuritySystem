@@ -90,17 +90,37 @@
             console.log("Socket.IO 연결 성공");
         });
 
-        socket.on("notification", (data) => {
-            // 알림 표시
+        socket.onAny((eventName, ...args) => {
+            console.log("[SOCKET.IO] 이벤트:", eventName, "데이터:", args);
+        });
+
+        socket.on("cam_event", (data) => {
+            console.log(data);
             const notification = document.createElement('div');
             notification.classList.add('notification');
-            notification.innerText = `알림: ${data.message}`;
+            notification.innerText =
+              `알림: ${data.message}\n`;
             notificationsContainer.appendChild(notification);
         });
 
+
         socket.on("disconnect", () => {
             console.log("Socket.IO 연결 끊김");
-        });
+        })
+
+        socket.on("pong_from_server", (data) => {
+            console.log(data.message);
+        })
+
+        socket.on("ping_from_server", (data) => {
+            console.log(data.message);
+            socket.emit("pong_from_web", { message: "pong" });
+        })
+
+        let intervalId = setInterval(() => {
+            socket.emit("get_event_message", { message: "ping" });
+            console.log("get_event_message");
+        }, 2000);
     </script>
 </body>
 </html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <!-- 상단 제목 -->
+    <TextView
+        android:id="@+id/title_live_video"
+        style="@style/AppTitleTextStyle"
+        android:text="@string/app_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 실시간 영상 Placeholder -->
+    <VideoView
+        android:id="@+id/live_video_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_launcher_background"
+        android:contentDescription="@string/live_video_access"
+        app:layout_constraintTop_toBottomOf="@id/title_live_video"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.6"
+        app:layout_constraintWidth_percent="1.0" />
+
+    <!-- 버튼 섹션 -->
+    <LinearLayout
+        android:id="@+id/button_section"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/live_video_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/btn_alert"
+            style="@style/AppButtonStyle"
+            android:text="경고 알림 OFF"
+            android:layout_marginEnd="@dimen/padding_small" />
+
+        <Button
+            android:id="@+id/btn_sound"
+            style="@style/AppButtonStyle"
+            android:text="환경음 OFF" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

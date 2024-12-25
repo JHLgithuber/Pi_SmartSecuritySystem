@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="0dp"
+    android:background="#FFFFFF">
+
+    <!-- 상단 제목 -->
+    <TextView
+        android:id="@+id/title_detail_record"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@color/primaryColor"
+        android:textColor="@color/white"
+        android:padding="@dimen/padding_medium"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 동영상 재생을 위한 VideoView -->
+    <VideoView
+        android:id="@+id/video_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/video_player"
+        app:layout_constraintTop_toBottomOf="@id/title_detail_record"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5" />
+
+    <!-- 기록 정보 -->
+    <TextView
+        android:id="@+id/record_details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/subBackground"
+        android:padding="@dimen/padding_medium"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_small"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/video_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 버튼 섹션 -->
+    <LinearLayout
+        android:id="@+id/button_section"
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/padding_medium"
+        app:layout_constraintTop_toBottomOf="@id/record_details"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 메인 메뉴 버튼 -->
+        <Button
+            android:id="@+id/btn_main_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_menu"
+            android:minWidth="120dp"
+            android:maxWidth="160dp"
+            android:layout_marginEnd="@dimen/padding_small"
+            android:backgroundTint="@color/primaryColor"
+            android:textColor="@color/white" />
+
+        <!-- 실시간 영상 버튼 -->
+        <Button
+            android:id="@+id/btn_live_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/live_video"
+            android:minWidth="120dp"
+            android:maxWidth="160dp"
+            android:backgroundTint="@color/primaryColor"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

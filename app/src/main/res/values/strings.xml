@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">7조 스마트 보안 시스템 (모바일)</string>
+    <string name="security_mode_on">경비 모드 ON</string>
+    <string name="security_mode_off">경비 모드 OFF</string>
+    <string name="live_video">실시간 영상</string>
+    <string name="intrusion_records">침입 기록</string>
+    <string name="sort_ascending">정렬 ↑</string>
+    <string name="sort_descending">정렬 ↓</string>
+    <string name="main_menu">메인 메뉴</string>
+    <string name="live_video_access">실시간 영상 페이지로 이동</string>
+    <string name="intrusion_record">침입 기록</string>
+    <string name="video_player">동영상 플레이어</string>
+    <string name="image">이미지</string>
+</resources>

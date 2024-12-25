@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 권한 설정 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <!-- 카메라 기능 명시 -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Embedded_PJ"
+        tools:targetApi="33">
+
+        <!-- 메인 액티비티 설정 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="unspecified">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 실시간 영상 페이지 액티비티 설정 (가로 모드 고정) -->
+        <activity
+            android:name=".LiveVideoActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" /> <!-- 가로 모드 설정 -->
+
+        <!-- 침입 기록 페이지 액티비티 설정 -->
+        <activity
+            android:name=".IntrusionRecordsActivity"
+            android:exported="false"
+            android:screenOrientation="unspecified" />
+
+        <!-- 상세 침입 기록 페이지 액티비티 설정 -->
+        <activity
+            android:name=".DetailRecordActivity"
+            android:exported="false"
+            android:screenOrientation="unspecified" />
+
+    </application>
+</manifest>

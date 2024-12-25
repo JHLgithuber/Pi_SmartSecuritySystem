@@ -1,0 +1,24 @@
+<resources>
+    <!-- 간격 설정 -->
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">32dp</dimen>
+    <dimen name="padding_xlarge">48dp</dimen>
+
+    <!-- 간격 -->
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+
+    <!-- 텍스트 크기 -->
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_large">22sp</dimen>
+
+    <!-- 이미지 크기 -->
+    <dimen name="image_size">150dp</dimen>
+
+    <!-- 버튼 크기 -->
+    <dimen name="button_min_width">120dp</dimen>
+    <dimen name="button_max_width">160dp</dimen>
+</resources>
